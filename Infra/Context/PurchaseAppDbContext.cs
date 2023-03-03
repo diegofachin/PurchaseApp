@@ -15,9 +15,11 @@ public class PurchaseAppDbContext : DbContext
 
     }
 
-    public DbSet<AppEntity> Apps { get; set; }
+    public DbSet<AppEntity> App { get; set; }
 
-    public DbSet<TransactionEntity> Transactions { get; set; }
+    public DbSet<PurchaseEntity> Purchase { get; set; }
+
+    public DbSet<TransactionEntity> Transaction { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

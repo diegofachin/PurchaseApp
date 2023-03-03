@@ -1,4 +1,7 @@
 ﻿using Application.Behavior;
+using Application.Handlers.AddApp;
+using Application.Handlers.AddPurchase;
+using Application.Validators;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -18,9 +21,9 @@ public static class IoC
     public static IServiceCollection AddFluentValidation(this IServiceCollection services)
     {
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        //services.AddScoped<IValidator<RegisterPersonRequestDto>, RegisterPersonValidator>();
-        //services.AddScoped<IValidator<AuthenticatePersonRequestDto>, AuthenticatePersonValidator>();
-
+        services.AddScoped<IValidator<AddAppRequestDto>, AddAppValidator>();
+        services.AddScoped<IValidator<AddPurchaseRequestDto>, AddPurchaseValidator>();
+        
         return services;
     }
 

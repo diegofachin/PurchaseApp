@@ -7,13 +7,15 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly PurchaseAppDbContext _context;
     public IAppRepository AppRepository { get; }
+    public IPurchaseRepository PurchaseRepository { get; }
     public ITransactionRepository TransactionRepository { get; }
 
-    public UnitOfWork(PurchaseAppDbContext context, IAppRepository appRepository, ITransactionRepository transactionRepository)
+    public UnitOfWork(PurchaseAppDbContext context, IAppRepository appRepository, IPurchaseRepository purchaseRepository, ITransactionRepository transactionRepository)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         AppRepository = appRepository ?? throw new ArgumentNullException(nameof(appRepository));
-        TransactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(appRepository));
+        PurchaseRepository = purchaseRepository ?? throw new ArgumentNullException(nameof(purchaseRepository));
+        TransactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
     }
 
     public int Commit()

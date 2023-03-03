@@ -1,9 +1,17 @@
-﻿using Domain.Enum;
+﻿using Domain.Entities;
+using Domain.Enum;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain.Entities;
+namespace Application.Handlers.AddPurchase;
 
-public class TransactionEntity : BaseEntity
+public class TransactionDto
 {
+    public Guid Id { get; set; }
+
     public string NumberCard { get; set; }
 
     public string NameOnCreditCard { get; set; }
@@ -15,6 +23,4 @@ public class TransactionEntity : BaseEntity
     public decimal Amount { get; set; }
 
     public PaymentStatus PaymentStatus { get; set; }
-
-    public virtual PurchaseEntity Purchase { get; set; }
 }

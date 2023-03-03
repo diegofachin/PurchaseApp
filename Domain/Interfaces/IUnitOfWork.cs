@@ -9,6 +9,7 @@ namespace Domain.Interfaces;
 public interface IUnitOfWork : IDisposable
 {
     IAppRepository AppRepository { get; }
+    IPurchaseRepository PurchaseRepository { get; }
     ITransactionRepository TransactionRepository { get; }
 
     int Commit();

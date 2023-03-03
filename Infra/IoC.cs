@@ -22,6 +22,7 @@ public static class IoC
     public static IServiceCollection AddRepository(this IServiceCollection services)
     {
         services.AddTransient<IAppRepository, AppRepository>();
+        services.AddTransient<IPurchaseRepository, PurchaseRepository>();
         services.AddTransient<ITransactionRepository, TransactionRepository>();
         services.AddTransient<IUnitOfWork, UnitOfWork>();
 

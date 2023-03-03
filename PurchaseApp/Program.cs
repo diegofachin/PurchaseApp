@@ -2,6 +2,7 @@ using Application;
 using Application.Filters;
 using MediatR;
 using Infra;
+using EasyNetQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddFluentValidation();
 builder.Services.AddInfra(builder.Configuration);
+builder.Services.AddScoped<IBus>(provider => RabbitHutch.CreateBus(builder.Configuration.GetConnectionString("TransactionPurchaseMessageConnection")));
 
 var app = builder.Build();
 
