@@ -3,6 +3,7 @@ using Application.Handlers.ListApp;
 using Application.Handlers.ListApps;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace PurchaseApp.Controllers;
 
@@ -21,9 +22,9 @@ public class AppController : ControllerBase
     [ProducesResponseType((201))]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
-    public async Task<ActionResult<string>> AddApp([FromBody] AddAppRequestDto registerUserRequestDto)
+    public async Task<IActionResult> AddAppAsync([FromBody] AddAppRequestDto addAppRequestDto)
     {
-        var result = await _mediator.Send(registerUserRequestDto);
+        var result = await _mediator.Send(addAppRequestDto);
 
         return result is not null
             ? Ok(result)
@@ -34,7 +35,7 @@ public class AppController : ControllerBase
     [ProducesResponseType((201))]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
-    public async Task<ActionResult<ListAppsResponseDto>> ListApp()
+    public async Task<IActionResult> ListAppAsync()
     {
         var result = await _mediator.Send(new ListAppsRequestDto());
 

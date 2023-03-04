@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Handlers.AddApp;
 
-public class AddAppRequestDto : IRequest<string>
+public class AddAppRequestDto : IRequest<AddAppResponseDto>
 {
     public string Name { get; set; }
 

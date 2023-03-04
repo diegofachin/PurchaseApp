@@ -7,11 +7,11 @@ namespace PurchaseApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TransactionController : ControllerBase
+public class PurchaseController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public TransactionController(IMediator mediator)
+    public PurchaseController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -20,9 +20,9 @@ public class TransactionController : ControllerBase
     [ProducesResponseType((201))]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
-    public async Task<ActionResult<string>> AddPurchaseApp([FromBody] AddPurchaseRequestDto registerUserRequestDto)
+    public async Task<IActionResult> AddPurchaseApp([FromBody] AddPurchaseRequestDto addPurchaseRequestDto)
     {
-        var result = await _mediator.Send(registerUserRequestDto);
+        var result = await _mediator.Send(addPurchaseRequestDto);
 
         return result is not null
             ? Ok(result)

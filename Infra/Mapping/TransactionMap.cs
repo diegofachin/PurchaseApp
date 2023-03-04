@@ -3,9 +3,11 @@ using Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Infra.Mapping;
 
+[ExcludeFromCodeCoverage]
 public class TransactionMap : IEntityTypeConfiguration<TransactionEntity>
 {
     public void Configure(EntityTypeBuilder<TransactionEntity> builder)
@@ -43,7 +45,7 @@ public class TransactionMap : IEntityTypeConfiguration<TransactionEntity>
 
         builder
             .Property(transaction => transaction.PaymentStatus)
-            .HasConversion(new EnumToStringConverter<PaymentStatus>())
+            .HasMaxLength(1)
             .IsRequired();
     }
 }

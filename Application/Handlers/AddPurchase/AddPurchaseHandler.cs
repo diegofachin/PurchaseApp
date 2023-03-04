@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace Application.Handlers.AddPurchase;
 
-public class AddPurchaseHandler : IRequestHandler<AddPurchaseRequestDto, string>
+public class AddPurchaseHandler : IRequestHandler<AddPurchaseRequestDto, AddPurchaseResponseDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IBus _bus;
@@ -19,7 +19,7 @@ public class AddPurchaseHandler : IRequestHandler<AddPurchaseRequestDto, string>
         _bus = bus;
     }
 
-    public async Task<string> Handle(AddPurchaseRequestDto request, CancellationToken cancellationToken)
+    public async Task<AddPurchaseResponseDto> Handle(AddPurchaseRequestDto request, CancellationToken cancellationToken)
     {
         var transaction = new TransactionEntity()
         {
@@ -46,7 +46,10 @@ public class AddPurchaseHandler : IRequestHandler<AddPurchaseRequestDto, string>
 
         await PublishTransaction(transaction, cancellationToken);
 
-        return await Task.FromResult("Pedido lançado com sucesso!");
+        return new AddPurchaseResponseDto()
+        {
+            Id = purchase.Id,
+        };
     }
 
     private async Task PublishTransaction(TransactionEntity transaction, CancellationToken cancellationToken)

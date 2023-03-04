@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Handlers.AddPurchase;
 
-public class AddPurchaseRequestDto : IRequest<string>
+public class AddPurchaseRequestDto : IRequest<AddPurchaseResponseDto>
 {
     public Guid PersonId { get; set; }
 

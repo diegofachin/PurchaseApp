@@ -1,9 +1,11 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Infra.Mapping;
 
+[ExcludeFromCodeCoverage]
 public class PurchaseMap : IEntityTypeConfiguration<PurchaseEntity>
 {
     public void Configure(EntityTypeBuilder<PurchaseEntity> builder)

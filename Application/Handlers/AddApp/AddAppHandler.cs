@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Handlers.AddApp;
 
-public class AddAppHandler : IRequestHandler<AddAppRequestDto, string>
+public class AddAppHandler : IRequestHandler<AddAppRequestDto, AddAppResponseDto>
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -13,7 +13,7 @@ public class AddAppHandler : IRequestHandler<AddAppRequestDto, string>
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
     }
 
-    public async Task<string> Handle(AddAppRequestDto request, CancellationToken cancellationToken)
+    public async Task<AddAppResponseDto> Handle(AddAppRequestDto request, CancellationToken cancellationToken)
     {
         AppEntity app = new()
         {
@@ -24,6 +24,9 @@ public class AddAppHandler : IRequestHandler<AddAppRequestDto, string>
         await _unitOfWork.AppRepository.Add(app);
         _unitOfWork.Commit();
 
-        return await Task.FromResult("Aplicativo cadastrado com sucesso!");
+        return new AddAppResponseDto()
+        {
+            Id = app.Id
+        };
     }
 }
