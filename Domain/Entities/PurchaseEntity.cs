@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.Entities;
 
+[ExcludeFromCodeCoverage]
 public class PurchaseEntity : BaseEntity
 {
     public Guid PersonId { get; set; }

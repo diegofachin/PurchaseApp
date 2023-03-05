@@ -32,8 +32,4 @@
     <ProjectReference Include="..\PurchaseApp\PurchaseApp.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Handlers\AddPurchase\" />
-  </ItemGroup>
-
 </Project>
