@@ -62,7 +62,7 @@ public class AddPurchaseHandler : IRequestHandler<AddPurchaseRequestDto, AddPurc
             Cvc = transaction.Cvc,
             Validate = transaction.Validate,
             Amount = transaction.Amount,
-            PaymentStatus = PaymentStatus.AwaitingProcessing
+            PaymentStatus = transaction.PaymentStatus,
         };
 
         var exchange = _bus.Advanced.ExchangeDeclare("transaction", options =>

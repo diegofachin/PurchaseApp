@@ -1,5 +1,6 @@
 ﻿using Application.Handlers.ListApps;
 using AutoFixture;
+using Bogus;
 using Domain.Entities;
 using Domain.Interfaces;
 using FluentAssertions;
@@ -10,6 +11,7 @@ namespace PurchaseAppTest.Application.Handlers.ListApps;
 public class ListAppsHandlerTest : IDisposable
 {
     protected readonly Fixture Fixture;
+    protected readonly Faker Faker;
     protected readonly Mock<IUnitOfWork> UnitOfWorkMock;
     protected readonly Mock<IAppRepository> AppRepositoryMock;
     protected readonly ListAppsHandler ListAppsHandler;
@@ -19,6 +21,7 @@ public class ListAppsHandlerTest : IDisposable
         UnitOfWorkMock = new();
         AppRepositoryMock = new();
         Fixture = new Fixture();
+        Faker = new Faker();
 
         UnitOfWorkMock.Setup(mock => mock.AppRepository).Returns(AppRepositoryMock.Object);
 
@@ -40,13 +43,13 @@ public class ListAppsHandlerTest : IDisposable
         {
             new AppEntity()
             {
-                Name = "Test",
-                Price = 10,
+                Name = Faker.Random.AlphaNumeric(200),
+                Price = Faker.Random.Decimal(0,1000),
             },
             new AppEntity()
             {
-                Name = "Test2",
-                Price = 12,
+                Name = Faker.Random.AlphaNumeric(200),
+                Price = Faker.Random.Decimal(0,1000),
             }
         };
 
