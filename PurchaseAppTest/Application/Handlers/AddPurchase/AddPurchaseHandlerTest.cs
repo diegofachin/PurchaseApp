@@ -67,7 +67,7 @@ public class AddPurchaseHandlerTest : IDisposable
     }
 
     [Fact]
-    public async Task AddPurchaseHandler_ReturnError_WhenInvalidErrado()
+    public async Task AddPurchaseHandler_ReturnError_WhenInvalid()
     {
         var request = Fixture.Create<AddPurchaseRequestDto>();
 
